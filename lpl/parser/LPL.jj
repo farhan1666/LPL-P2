@@ -1,0 +1,163 @@
+options {
+  STATIC = false;
+}
+
+PARSER_BEGIN(LPLParser)
+  package lpl.parser;
+
+  import lpl.ast.*;
+  import java.util.List;
+  import java.util.LinkedList;
+
+  public class LPLParser {
+    // JavaCC will generate the body of this class
+  }
+PARSER_END(LPLParser)
+
+SKIP : /* White-space and comments are already defined here */
+{
+    " "
+  | "\t"
+  | "\n"
+  | "\r"
+  | "\f"
+  | < "//" (~["\n","\r"])* ("\n"|"\r"|"\r\n") >
+  | <"/*" (~["*"])* "*" ("*" | (~["*","/"] (~["*"])* "*"))* "/">
+}
+
+TOKEN : /* Define the LPL tokens here. */
+{
+// CHECK: how many terminal symbols in the LPL grammar?
+// here are some to get you started...
+  < LBR: "(" >
+| < RBR: ")" >
+| < LCBR: "{" >
+| < RCBR: "}" >
+| < DEF: "def" >
+| < INT: "int" >
+| < TRUE: "true" >
+| < SEMICOLON: ";" >
+| < AND : "&&" >
+| < COMMA: "," >
+
+// TODO: this is wrong! fix it
+// but make sure to define your ID token *after* all keyword tokens ("def", "int", etc)
+| < ID: "x" >
+}
+
+/************************************
+ * The LPL grammar starts here *
+ ************************************/
+
+
+// this is complete
+public Program nt_Program() :
+{
+  FunDef mainDef, fd;
+  List<FunDef> fds = new LinkedList<FunDef>();
+}
+{
+  mainDef=nt_FunDef() (fd=nt_FunDef() { fds.add(fd); })*
+  <EOF>
+  { return new Program(mainDef, fds); }
+}
+
+public FunDef nt_FunDef() :
+{
+}
+{
+  // TODO: this is wrong! fix it
+  <DEF> nt_Type() <ID> <LBR> <RBR> <LCBR> <RCBR>
+  { return null; }
+}
+
+// this is complete
+public List<Formal> nt_FormalList() :
+{
+  Formal f;
+  List<Formal> fs = new LinkedList<Formal>();
+  Type type;
+  Token t;
+}
+{
+    type=nt_Type() t=<ID>
+    { f = new Formal(type, t.image); fs.add(f); }
+    (f=nt_FormalRest() { fs.add(f); })*
+    { return fs; }
+  | {} // empty list
+    { return fs; }
+}
+
+// this is complete except for semantic actions to build the AST
+public Formal nt_FormalRest() :
+{
+}
+{
+  <COMMA> nt_Type() <ID>
+  { return null; }
+}
+
+public Type nt_Type() :
+{
+}
+{
+    // TODO: this is very incomplete
+    <INT>
+    { return null; }
+}
+
+
+public VarDecl nt_VarDecl() :
+{
+}
+{
+  nt_Type() <ID> <SEMICOLON> { return null; }
+}
+
+public Stm nt_Statement() :
+{
+}
+{
+    // TODO: this is very incomplete
+    <LCBR> ( nt_Statement() )* <RCBR> { return null; }
+}
+
+public Exp nt_Exp() :
+{
+}
+{
+    // TODO: this is very incomplete
+    <ID> <LBR> nt_ExpList() <RBR> { return null; }
+}
+
+public Op nt_Op() :
+{}
+{
+   // TODO: this is very incomplete
+   <AND> { return Op.AND; }
+}
+
+public PrimaryExp nt_PrimaryExp() :
+{
+}
+{
+   // TODO: this is very incomplete
+    <TRUE> { return null; }
+
+}
+
+public List<Exp> nt_ExpList() :
+{
+}
+{
+  // TODO: this is just a placeholder, replace it
+  { return null; }
+}
+
+public Exp nt_ExpRest() :
+{
+}
+{
+  // TODO: this is just a placeholder, replace it
+  { return null; }
+}
