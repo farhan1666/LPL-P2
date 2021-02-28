@@ -8,4 +8,8 @@ public class StmReturn extends Stm {
         this.e = e;
     }
 
+    @Override
+    public String toString() {
+        return e + "";
+    }
 }

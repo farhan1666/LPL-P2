@@ -8,4 +8,9 @@ public class TypeArray extends Type {
         this.t = t;
     }
 
+    @Override
+    public String toString() {
+        return  t + "";
+    }
+
 }

@@ -11,4 +11,9 @@ public class StmBlock extends Stm {
         this.ss = Collections.unmodifiableList(ss);
     }
 
+    @Override
+    public String toString() {
+        return  ss  + " ";
+    }
+
 }

@@ -12,5 +12,10 @@ public class StmCall extends Stm {
         this.id = id;
         this.es = Collections.unmodifiableList(es);
     }
+
+    @Override
+    public String toString() {
+        return  id  + " list Exp  " + es ;
+    }
     
 }

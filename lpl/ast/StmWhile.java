@@ -10,4 +10,9 @@ public class StmWhile extends Stm {
         this.body = body;
     }
 
+    @Override
+    public String toString() {
+        return "if (" + e + ") " + body ;
+    }
+
 }

@@ -11,4 +11,9 @@ public class StmArrayAssign extends Stm {
         this.e3 = e3;
     }
 
+    @Override
+    public String toString() {
+        return "if("+ e1 +")"  + "else if("+ e2 +")" + "else if(" + e3 + ")";
+    }
+
 }

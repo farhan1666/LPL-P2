@@ -12,5 +12,10 @@ public class ExpCall extends Exp {
         this.id = id;
         this.es = Collections.unmodifiableList(es);
     }
+
+    @Override
+    public String toString() {
+        return  id  + " " + es;
+    }
     
 }

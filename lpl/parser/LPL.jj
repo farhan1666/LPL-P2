@@ -29,20 +29,43 @@ TOKEN : /* Define the LPL tokens here. */
 {
 // CHECK: how many terminal symbols in the LPL grammar?
 // here are some to get you started...
-  < LBR: "(" >
+   < LBR: "(" >
 | < RBR: ")" >
 | < LCBR: "{" >
 | < RCBR: "}" >
+| < LSBR: "[" >
+| < RSBR: "]" >
+| < SEMICOLON: ";" >
+| < AND : "&&" >
+| < OR: "||" >
+| < LSTHN: "<" >
+| < EQUTO: "==" >
+| < FSLSH: "/" >
+| < PLUS: "+" >
+| < MINUS: "-" >
+| < MULTIPLY: "*" >
+| < COMMA: "," >
+| < DOT: "." >
+| < EXCLAMATION: "!" >
 | < DEF: "def" >
 | < INT: "int" >
 | < TRUE: "true" >
-| < SEMICOLON: ";" >
-| < AND : "&&" >
-| < COMMA: "," >
+| < FALSE: "false" >
+| < BOOLEAN: "bool" >
+| < IF: "if" >
+| < OUTPUT: "output" >
+| < OUTCHAR: "outchar" >
+| < UNIT: "unit" >
+| < WHILE: "while" >
+| < RETURN: "return" >
+| < LENGTH: "length" >
+| < NEW: "new" >
+| < ISNULL: "isnull" >
+| < OP: ["/", "+", "-", "*"] >
+| < ID: ["a" - "z", "A" - "Z"]  (["a" - "z", "A" - "Z", "_", "0" - "9"])*>
 
 // TODO: this is wrong! fix it
 // but make sure to define your ID token *after* all keyword tokens ("def", "int", etc)
-| < ID: "x" >
 }
 
 /************************************
@@ -67,7 +90,7 @@ public FunDef nt_FunDef() :
 }
 {
   // TODO: this is wrong! fix it
-  <DEF> nt_Type() <ID> <LBR> <RBR> <LCBR> <RCBR>
+    <DEF> nt_Type() <ID> <LBR> nt_FormalList() <RBR> <LCBR> nt_VarDecl() <RCBR>
   { return null; }
 }
 

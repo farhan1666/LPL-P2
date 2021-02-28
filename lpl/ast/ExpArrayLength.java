@@ -8,4 +8,9 @@ public class ExpArrayLength extends Exp {
         this.e = e;
     }
 
+    @Override
+    public String toString() {
+        return  e  + " ";
+    }
+
 }

@@ -8,4 +8,9 @@ public class StmOutchar extends Stm {
         this.e = e;
     }
 
+    @Override
+    public String toString() {
+        return  e  + " ";
+    }
+
 }

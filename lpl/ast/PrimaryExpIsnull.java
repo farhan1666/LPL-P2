@@ -8,4 +8,9 @@ public class PrimaryExpIsnull extends PrimaryExp {
         this.e = e;
     }
 
+    @Override
+    public String toString() {
+        return  e  + " ";
+    }
+
 }

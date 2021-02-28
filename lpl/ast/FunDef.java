@@ -21,6 +21,6 @@ public class FunDef {
 
     @Override
     public String toString() {
-        throw new Error("TODO: define toString() properly in the FunDef class");
+       return "Type " + t  + "Id" + id + "fs" + fs + "lvs" + "ss" + ss;
     }
 }

@@ -10,4 +10,9 @@ public class PrimaryExpNewArray extends PrimaryExp {
         this.e = e;
     }
 
+    @Override
+    public String toString() {
+        return  "type" + t + " exp " + e;
+    }
+
 }

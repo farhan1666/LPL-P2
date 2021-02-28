@@ -8,4 +8,9 @@ public class PrimaryExpNot extends PrimaryExp {
         this.e = e;
     }
 
+    @Override
+    public String toString() {
+        return  e  + " ";
+    }
+
 }

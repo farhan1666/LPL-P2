@@ -10,4 +10,9 @@ public class StmAssign extends Stm {
         this.e = e;
     }
 
+    @Override
+    public String toString() {
+        return  "ID" + id + "Exp" + e;
+    }
+
 }
